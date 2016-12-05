@@ -1,4 +1,9 @@
 package com.string;
+/**
+ * 
+ * @author Administrator
+ *
+ */
 
 public class Buy implements Runnable{
    private int tickets = 10000;
