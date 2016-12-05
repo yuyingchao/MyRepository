@@ -26,7 +26,7 @@ public class Buy implements Runnable{
 	
 	class buy2 extends Thread{
 		
-		   private static int tickets = 1000;
+		  int tickets = 1000;
 			public void run() {
 				while(tickets > 0){
 					synchronized (buy2.class) {
