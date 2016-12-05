@@ -8,6 +8,7 @@ package com.string;
 public class Buy implements Runnable{
    private int tickets = 10000;
 	public void run() {
+		//test-------------------------------
 		while(tickets > 0){
 			synchronized (this) {
 				if(tickets>0){
