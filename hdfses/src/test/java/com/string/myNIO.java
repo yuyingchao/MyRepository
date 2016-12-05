@@ -1,0 +1,55 @@
+package com.string;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+/**
+ * 2016-12-05
+ * @author yyc
+ *nio的简单演示---文件通道channel                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+ */
+public class myNIO {
+	@SuppressWarnings("resource")
+	public static void main(String[] args) throws Exception {
+		FileInputStream fis = null;
+		FileOutputStream fos = null;
+		FileChannel foc = null;
+		FileChannel fic = null;
+		try {
+			fis = new FileInputStream("e:/yyc.txt");
+			fos = new FileOutputStream("e:/yyc2.txt");
+			fic = fis.getChannel();
+			foc = fos.getChannel();
+			ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+			int len = -1;
+			while ((len = fic.read(byteBuffer)) != -1) {
+				byteBuffer.flip();
+				foc.write(byteBuffer);
+				byteBuffer.clear();
+			}
+			System.out.println("success");
+		} catch (FileNotFoundException e) {
+			// TODO Auaaato-gensserated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (fic != null) {
+				fic.close();
+			}
+			if (foc != null) {
+				foc.close();
+			}
+			if (fis != null) {
+				fis.close();
+			}
+			if (fos != null) {
+				fos.close();
+			}
+		}
+	}
+}
